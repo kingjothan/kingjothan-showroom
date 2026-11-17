@@ -139,3 +139,22 @@ body{background:var(--theme-bg);color:var(--theme-ink);transition:background-col
 .studio-top,.studio-top.is-visible{right:clamp(180px,calc(2vw + 165px),205px)!important;bottom:clamp(18px,2vw,30px)!important;width:46px;height:46px;transform:none}
 .studio-top:hover{transform:translateY(-3px)}
 @media(max-width:760px){.studio-top,.studio-top.is-visible{right:166px!important;bottom:14px!important;width:43px;height:43px}.theme-studio{right:12px!important;bottom:14px!important}}
+
+
+/* Spatial storytelling: scroll-linked depth, reveal, and accessible 3D interaction */
+@media(min-width:761px) and (prefers-reduced-motion:no-preference){
+ .story-motion-ready main .react-section{--story-progress:0;perspective:1200px}
+ .story-motion-ready main .react-section .heading{transform:translate3d(0,calc((1 - var(--story-progress)) * 20px),0);opacity:clamp(.7,calc(var(--story-progress) * 2),1);transition:opacity .18s linear;will-change:transform}
+ .story-motion-ready .hero .portrait{transform:translate3d(0,var(--portrait-shift,0px),0) rotateY(calc(var(--hero-scroll,0) * -8deg));transform-style:preserve-3d;backface-visibility:hidden}
+ .story-motion-ready .hero .hero-identity{perspective:1100px}
+ .story-motion-ready .hero .foot{opacity:clamp(.3,calc(1 - var(--hero-scroll,0)),1)}
+ .story-motion-ready .project,.story-motion-ready .archive-card,.story-motion-ready .kj-tech-card,.story-motion-ready .kj-resume-card{transform:perspective(1100px) translate3d(0,var(--card-scroll-lift,0px),0) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transform-style:preserve-3d;transition:transform .25s ease-out,box-shadow .35s ease,border-color .35s ease;backface-visibility:hidden}
+ .story-motion-ready .project .visual,.story-motion-ready .archive-card strong,.story-motion-ready .kj-tech-card h3,.story-motion-ready .kj-resume-card h3{transform:translateZ(12px)}
+ .story-motion-ready .project .visual strong{transform:translateZ(22px)}
+}
+@media(max-width:760px) and (prefers-reduced-motion:no-preference){
+ .story-motion-ready .project,.story-motion-ready .archive-card,.story-motion-ready .kj-tech-card,.story-motion-ready .kj-resume-card{transform:none!important}
+ .story-motion-ready .hero .portrait{transform:translate3d(0,calc(var(--hero-scroll,0) * 14px),0)}
+ .story-motion-ready .section .heading{opacity:1}
+}
+@media(prefers-reduced-motion:reduce){.story-motion-ready .hero .portrait,.story-motion-ready .project,.story-motion-ready .archive-card,.story-motion-ready .kj-tech-card,.story-motion-ready .kj-resume-card{transform:none!important}}
