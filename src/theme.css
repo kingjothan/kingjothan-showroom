@@ -53,3 +53,15 @@ body{background:var(--theme-bg);color:var(--theme-ink);transition:background-col
 .theme-selected{font-size:14px}
 .theme-panel-top,.theme-panel>p,.theme-saved{flex-shrink:0}
 @media(max-width:760px){.theme-studio{left:auto!important;right:12px!important;bottom:14px}.theme-panel{right:0!important;left:auto!important;max-height:min(72dvh,590px);padding:17px}.theme-options{gap:7px}.theme-option{padding:7px 6px;font-size:10px}.theme-option .theme-swatch{width:36px;height:29px;padding:6px;gap:3px}.theme-option .theme-swatch i{width:10px}.studio-top{right:14px;bottom:76px}}
+
+
+/* Refined editorial typography: balanced scale across desktop and mobile */
+.hero h1{font-size:clamp(48px,6.4vw,96px)!important;line-height:1.04!important;letter-spacing:-.065em!important;overflow-wrap:break-word}
+.section .heading h2,.about h2,.heading h2{font-size:clamp(34px,4.6vw,66px)!important;line-height:1.1!important;letter-spacing:-.055em!important;overflow-wrap:break-word}
+.contact-reimagined h2{font-size:clamp(48px,6.5vw,94px)!important;line-height:1.06!important;letter-spacing:-.065em!important;overflow-wrap:break-word}
+.project .visual strong{font-size:clamp(31px,4vw,61px)!important;line-height:1.06!important;letter-spacing:-.045em}
+.archive-card strong{font-size:clamp(25px,3vw,43px)!important;line-height:1.12!important}
+.project h3{font-size:clamp(20px,1.8vw,27px)!important;line-height:1.2!important}
+.hero-bottom p,.about p,.section .heading p,.project p,.contact-copy p{line-height:1.65}
+@media(max-width:760px){.hero h1{font-size:clamp(39px,9vw,62px)!important;letter-spacing:-.06em!important}.section .heading h2,.about h2,.heading h2{font-size:clamp(30px,7.6vw,47px)!important;line-height:1.13!important}.contact-reimagined h2{font-size:clamp(37px,8.6vw,60px)!important;line-height:1.1!important}.project .visual strong{font-size:clamp(27px,7vw,45px)!important}.archive-card strong{font-size:clamp(24px,6.4vw,35px)!important}.project h3{font-size:clamp(19px,5.4vw,24px)!important}}
+@media(max-width:380px){.hero h1{font-size:clamp(35px,9vw,42px)!important}.section .heading h2,.about h2,.heading h2{font-size:clamp(28px,7.5vw,36px)!important}.contact-reimagined h2{font-size:clamp(33px,8.5vw,40px)!important}}
