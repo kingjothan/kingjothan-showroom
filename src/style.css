@@ -93,3 +93,20 @@ body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 @media(min-width:1024px){.header{width:244px;padding:35px 24px}body{padding-left:244px}.reading-progress{left:244px}.hero{padding-left:3%;padding-right:3%}.header>.logo img{width:102px!important;height:102px!important}.header .nav{gap:11px}.header .nav a{padding:14px 15px}}
 @media(max-width:760px){.hero{min-height:auto;padding-top:85px;padding-bottom:50px}.hero h1{font-size:clamp(54px,12vw,88px);line-height:.97}.hero-identity{margin-top:20px}.hero-bottom{margin-top:26px}.section{padding-top:75px;padding-bottom:75px}.heading{margin-bottom:32px}.skill{padding:22px}.project:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){.project:hover,.header>.pill:hover,.actions .pill:hover{transform:none}}
+
+/* Choreographed section reveals and interaction polish */
+@keyframes kj-rise{from{opacity:0;transform:translate3d(0,32px,0) scale(.985)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes kj-line{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.reveal{opacity:0;transform:translate3d(0,36px,0) scale(.985);filter:blur(5px);transition:opacity .85s cubic-bezier(.2,.75,.2,1),transform .85s cubic-bezier(.2,.75,.2,1),filter .85s ease}
+.reveal.visible{opacity:1;transform:none;filter:blur(0)}
+.project:nth-child(2n).reveal,.skill:nth-child(2n).reveal{transition-delay:110ms}
+.project:nth-child(3n).reveal,.skill:nth-child(3n).reveal{transition-delay:190ms}
+.section .heading:after{content:"";display:block;height:1px;width:100%;margin-top:28px;background:linear-gradient(90deg,rgba(219,185,117,.56),rgba(219,185,117,.05) 62%,transparent);transform-origin:left}
+.section .heading.visible:after{animation:kj-line 1.1s .15s both}
+.hero .eyebrow{animation:kj-rise .8s .05s both}
+.hero-identity{animation:kj-rise .9s .15s both}
+.hero h1{animation:kj-rise 1.1s .27s both}
+.hero-bottom{animation:kj-rise 1s .44s both}
+.hero .foot{animation:kj-rise 1s .65s both}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;filter:none;transition:none}.section .heading.visible:after,.hero .eyebrow,.hero-identity,.hero h1,.hero-bottom,.hero .foot{animation:none!important}}
