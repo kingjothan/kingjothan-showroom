@@ -65,3 +65,18 @@ body{background:var(--theme-bg);color:var(--theme-ink);transition:background-col
 .hero-bottom p,.about p,.section .heading p,.project p,.contact-copy p{line-height:1.65}
 @media(max-width:760px){.hero h1{font-size:clamp(39px,9vw,62px)!important;letter-spacing:-.06em!important}.section .heading h2,.about h2,.heading h2{font-size:clamp(30px,7.6vw,47px)!important;line-height:1.13!important}.contact-reimagined h2{font-size:clamp(37px,8.6vw,60px)!important;line-height:1.1!important}.project .visual strong{font-size:clamp(27px,7vw,45px)!important}.archive-card strong{font-size:clamp(24px,6.4vw,35px)!important}.project h3{font-size:clamp(19px,5.4vw,24px)!important}}
 @media(max-width:380px){.hero h1{font-size:clamp(35px,9vw,42px)!important}.section .heading h2,.about h2,.heading h2{font-size:clamp(28px,7.5vw,36px)!important}.contact-reimagined h2{font-size:clamp(33px,8.5vw,40px)!important}}
+
+
+/* Compact, consistent type hierarchy across every portfolio section */
+:root{--type-display:clamp(40px,5vw,72px);--type-section:clamp(29px,3.4vw,48px);--type-feature:clamp(25px,3.1vw,42px);--type-card:clamp(20px,2.2vw,31px)}
+.hero h1{font-size:var(--type-display)!important;line-height:1.08!important;letter-spacing:-.055em!important}
+.section .heading h2,.about h2,.heading h2{font-size:var(--type-section)!important;line-height:1.15!important;letter-spacing:-.045em!important}
+.contact-reimagined h2{font-size:clamp(38px,5vw,70px)!important;line-height:1.12!important;letter-spacing:-.05em!important}
+.project .visual strong{font-size:var(--type-feature)!important;line-height:1.13!important;letter-spacing:-.035em!important}
+.archive-card strong{font-size:var(--type-card)!important;line-height:1.16!important}
+.project h3,.project .details h3{font-size:clamp(19px,1.7vw,24px)!important;line-height:1.25!important}
+.about .stats strong,.stats strong{font-size:clamp(28px,3vw,44px)!important}
+.section .heading p,.hero-bottom p,.about p,.project p,.timeline-row p,.contact-copy p{font-size:clamp(14px,1.12vw,16px)!important;line-height:1.7!important}
+.hero .eyebrow,.section .kicker,.about .kicker,.heading .kicker{font-size:clamp(10px,.85vw,12px)!important}
+@media(max-width:760px){:root{--type-display:clamp(34px,8vw,49px);--type-section:clamp(27px,6.5vw,38px);--type-feature:clamp(24px,6vw,35px);--type-card:clamp(20px,5.5vw,29px)}.contact-reimagined h2{font-size:clamp(32px,7.5vw,46px)!important}.project h3,.project .details h3{font-size:19px!important}.section .heading p,.hero-bottom p,.about p,.project p,.timeline-row p,.contact-copy p{font-size:14px!important}.hero h1,.section .heading h2,.about h2,.contact-reimagined h2,.project .visual strong,.archive-card strong{max-width:100%;overflow-wrap:break-word}}
+@media(max-width:380px){:root{--type-display:clamp(31px,8vw,37px);--type-section:clamp(25px,6.5vw,31px);--type-feature:clamp(22px,6vw,28px);--type-card:clamp(19px,5.5vw,25px)}.contact-reimagined h2{font-size:clamp(30px,7.5vw,36px)!important}}
