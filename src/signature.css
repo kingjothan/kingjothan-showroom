@@ -1,0 +1,20 @@
+/* Studio signature interactions and cinematic navigation */
+.studio-grain{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitchTiles'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.23' filter='url(%23g)'/%3E%3C/svg%3E");mix-blend-mode:soft-light}
+.studio-rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.studio-rail a{display:flex;align-items:center;gap:10px;color:#c6c9bc;font:600 10px "DM Sans",sans-serif;letter-spacing:.11em;opacity:.58;transition:opacity .35s,color .35s,transform .35s}
+.studio-rail a:hover,.studio-rail a.is-active{opacity:1;color:#e9cb8f;transform:translateX(-3px)}
+.studio-rail-label{min-width:50px;text-align:right;opacity:0;transform:translateX(5px);transition:opacity .3s,transform .3s}
+.studio-rail a:hover .studio-rail-label,.studio-rail a.is-active .studio-rail-label{opacity:1;transform:none}
+.studio-rail-line{height:1px;width:18px;background:currentColor;transition:width .35s}
+.studio-rail a.is-active .studio-rail-line{width:34px;height:2px}
+.studio-rail-number{font-variant-numeric:tabular-nums}
+.studio-top{position:fixed;z-index:35;bottom:26px;right:28px;width:48px;height:48px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(231,200,143,.4);background:rgba(20,28,23,.93);color:#e9cb8f;font-size:22px;box-shadow:0 12px 38px rgba(0,0,0,.24);opacity:0;pointer-events:none;transform:translateY(18px);transition:opacity .4s,transform .4s,background .3s}
+.studio-top.is-visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+.studio-top:hover{background:#283525;transform:translateY(-5px)}
+.hero:after{pointer-events:none}
+.project .visual{position:relative}
+.project .visual:before{transition:opacity .5s,transform .7s cubic-bezier(.2,.8,.2,1)}
+.project:hover .visual:before{transform:scale(1.13);opacity:.23}
+@media(max-width:1350px){.studio-rail{display:none}}
+@media(max-width:760px){.studio-top{width:42px;height:42px;right:16px;bottom:16px}.studio-grain{opacity:.045}}
+@media(prefers-reduced-motion:reduce){.studio-top,.studio-rail a,.studio-rail-label,.studio-rail-line{transition:none!important}}
