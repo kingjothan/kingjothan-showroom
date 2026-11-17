@@ -285,3 +285,15 @@ body{background:var(--theme-bg);color:var(--theme-ink);transition:background-col
  .narrative-scene{display:none}.narrative-copy{max-width:650px;margin:55px 0;transform:none;opacity:1}.narrative-copy h2{font-size:clamp(30px,6vw,54px)}
  .narrative-meter span{transform:scaleX(1)}.narrative-site .heading{transform:none!important;opacity:1!important}
 }
+
+
+/* Refined storytelling: one short 3D moment, calm continuous content */
+.narrative-lite .narrative-act{height:135svh}
+.narrative-lite .narrative-sticky{background:radial-gradient(ellipse 48% 45% at 68% 50%,color-mix(in srgb,var(--theme-accent) 6%,transparent),transparent 80%),var(--theme-bg)}
+.narrative-lite .narrative-geometry{scale:.72;opacity:.65}
+.narrative-lite .narrative-grid{opacity:.2}
+.narrative-lite .narrative-copy h2{font-size:clamp(32px,4vw,56px)}
+.narrative-lite .narrative-copy{opacity:1}
+.narrative-lite .narrative-node{box-shadow:none}
+@media(max-width:760px){.narrative-lite .narrative-act{height:115svh}.narrative-lite .narrative-geometry{scale:.5!important;opacity:.4}.narrative-lite .narrative-copy h2{font-size:clamp(28px,7vw,38px)}}
+@media(prefers-reduced-motion:reduce){.narrative-lite .narrative-act{height:auto}}
