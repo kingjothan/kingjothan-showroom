@@ -115,3 +115,14 @@ body{background:var(--theme-bg);color:var(--theme-ink);transition:background-col
   html{scroll-padding-top:84px}
   #home,#work,#archive,#all-projects,#about,#experience,#resume,#services,#contact{scroll-margin-top:84px}
 }
+
+
+/* Complete technology stack grid */
+.kj-tech-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.kj-tech-card{min-width:0;padding:clamp(20px,2.5vw,30px);border:1px solid color-mix(in srgb,var(--theme-accent) 16%,transparent);border-radius:17px;background:color-mix(in srgb,var(--theme-accent) 3%,transparent);transition:transform .3s,border-color .3s}
+.kj-tech-card:hover{transform:translateY(-4px);border-color:var(--theme-accent)}
+.kj-tech-card h3{font-size:clamp(18px,1.7vw,23px)!important;line-height:1.25;margin:12px 0!important}
+.kj-tech-card p{font-size:14px!important;line-height:1.8!important;overflow-wrap:anywhere}
+.kj-tech-card>span{color:var(--theme-accent)}
+@media(max-width:760px){.kj-tech-grid{grid-template-columns:1fr;gap:12px}.kj-tech-card{padding:20px}.kj-tech-card h3{font-size:19px!important}}
+@media(prefers-reduced-motion:reduce){.kj-tech-card{transition:none!important}}
