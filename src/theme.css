@@ -126,3 +126,10 @@ body{background:var(--theme-bg);color:var(--theme-ink);transition:background-col
 .kj-tech-card>span{color:var(--theme-accent)}
 @media(max-width:760px){.kj-tech-grid{grid-template-columns:1fr;gap:12px}.kj-tech-card{padding:20px}.kj-tech-card h3{font-size:19px!important}}
 @media(prefers-reduced-motion:reduce){.kj-tech-card{transition:none!important}}
+
+
+/* Separate back-to-top from the colour picker on all screens */
+.studio-top{position:fixed!important;right:clamp(14px,2vw,28px)!important;bottom:clamp(86px,2vw + 70px,104px)!important;z-index:115!important}
+.theme-studio{z-index:110}
+.theme-studio-open{z-index:130!important}
+@media(max-width:760px){.studio-top{right:12px!important;bottom:82px!important;z-index:115!important}.theme-studio{right:12px!important;bottom:14px!important}}
