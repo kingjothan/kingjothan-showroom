@@ -133,3 +133,9 @@ body{background:var(--theme-bg);color:var(--theme-ink);transition:background-col
 .theme-studio{z-index:110}
 .theme-studio-open{z-index:130!important}
 @media(max-width:760px){.studio-top{right:12px!important;bottom:82px!important;z-index:115!important}.theme-studio{right:12px!important;bottom:14px!important}}
+
+
+/* Keep both floating controls side-by-side without overlap */
+.studio-top,.studio-top.is-visible{right:clamp(180px,calc(2vw + 165px),205px)!important;bottom:clamp(18px,2vw,30px)!important;width:46px;height:46px;transform:none}
+.studio-top:hover{transform:translateY(-3px)}
+@media(max-width:760px){.studio-top,.studio-top.is-visible{right:166px!important;bottom:14px!important;width:43px;height:43px}.theme-studio{right:12px!important;bottom:14px!important}}
