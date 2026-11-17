@@ -80,3 +80,24 @@ body{background:var(--theme-bg);color:var(--theme-ink);transition:background-col
 .hero .eyebrow,.section .kicker,.about .kicker,.heading .kicker{font-size:clamp(10px,.85vw,12px)!important}
 @media(max-width:760px){:root{--type-display:clamp(34px,8vw,49px);--type-section:clamp(27px,6.5vw,38px);--type-feature:clamp(24px,6vw,35px);--type-card:clamp(20px,5.5vw,29px)}.contact-reimagined h2{font-size:clamp(32px,7.5vw,46px)!important}.project h3,.project .details h3{font-size:19px!important}.section .heading p,.hero-bottom p,.about p,.project p,.timeline-row p,.contact-copy p{font-size:14px!important}.hero h1,.section .heading h2,.about h2,.contact-reimagined h2,.project .visual strong,.archive-card strong{max-width:100%;overflow-wrap:break-word}}
 @media(max-width:380px){:root{--type-display:clamp(31px,8vw,37px);--type-section:clamp(25px,6.5vw,31px);--type-feature:clamp(22px,6vw,28px);--type-card:clamp(19px,5.5vw,25px)}.contact-reimagined h2{font-size:clamp(30px,7.5vw,36px)!important}}
+
+
+/* Source-grounded resume editorial section */
+.kj-resume{scroll-margin-top:35px}.kj-resume .heading{display:flex;justify-content:space-between;align-items:end;gap:24px}.kj-resume .heading p{max-width:300px}
+.kj-resume-label{display:block;font:700 10px/1.5 "DM Sans",sans-serif;letter-spacing:.15em;color:var(--theme-accent);margin-bottom:14px}
+.kj-resume-intro{display:flex;align-items:end;justify-content:space-between;gap:35px;padding:32px 0 44px;border-bottom:1px solid var(--studio-border)}
+.kj-resume-intro>div{max-width:730px}.kj-resume h3{font:600 clamp(21px,2.2vw,30px)/1.2 "Space Grotesk",sans-serif;letter-spacing:-.04em;margin:0 0 15px;color:var(--theme-ink)}
+.kj-resume p,.kj-resume li{font:400 14px/1.75 "DM Sans",sans-serif;color:color-mix(in srgb,var(--theme-ink) 77%,transparent)}
+.kj-resume-download{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-height:47px;padding:12px 20px;border:1px solid var(--theme-accent);border-radius:100px;color:var(--theme-accent);font:700 12px "DM Sans",sans-serif;transition:background .3s,color .3s,transform .3s}
+.kj-resume-download:hover{background:var(--theme-accent);color:var(--theme-bg);transform:translateY(-3px)}
+.kj-resume-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:35px 0}
+.kj-resume-card{padding:clamp(22px,3vw,36px);border:1px solid var(--studio-border);border-radius:18px;background:color-mix(in srgb,var(--theme-accent) 3%,transparent);transition:transform .4s,border-color .4s,background .4s}
+.kj-resume-card:hover{transform:translateY(-5px);border-color:var(--theme-accent);background:color-mix(in srgb,var(--theme-accent) 7%,transparent)}
+.kj-resume-card h3{font-size:clamp(19px,1.7vw,25px)}.kj-resume-card p{margin:0}
+.kj-resume-subhead{padding:32px 0 15px}.kj-resume-entries article{display:grid;grid-template-columns:minmax(135px,23%) 1fr;gap:30px;padding:28px 0;border-top:1px solid var(--studio-border)}
+.kj-resume-entries article>span{font:700 11px/1.6 "DM Sans",sans-serif;letter-spacing:.08em;color:var(--theme-secondary)}
+.kj-resume-entries h4{font:600 clamp(18px,2vw,24px)/1.25 "Space Grotesk",sans-serif;color:var(--theme-ink);margin:0 0 4px}
+.kj-resume-entries p{margin:0 0 12px}.kj-resume-entries ul{margin:0;padding-left:19px}.kj-resume-entries li{margin-bottom:7px}
+.kj-resume-bottom{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:32px 0;border-top:1px solid var(--studio-border)}.kj-resume-bottom p{margin:6px 0}
+@media(max-width:760px){.kj-resume .heading,.kj-resume-intro{display:block}.kj-resume-download{margin-top:16px}.kj-resume-grid,.kj-resume-bottom{grid-template-columns:1fr;gap:12px}.kj-resume-card{padding:22px}.kj-resume-entries article{grid-template-columns:1fr;gap:10px}.kj-resume-bottom{gap:25px}.kj-resume h3{font-size:22px}}
+@media(prefers-reduced-motion:reduce){.kj-resume-card,.kj-resume-download{transition:none!important}}
