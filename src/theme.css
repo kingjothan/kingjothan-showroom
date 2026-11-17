@@ -230,3 +230,6 @@ body{background:var(--theme-bg);color:var(--theme-ink);transition:background-col
 @media(max-width:760px){.full-story-hud{left:12px;bottom:13px;width:calc(100vw - 228px);min-width:110px;padding:9px 10px 8px;border-radius:12px}.full-story-hud-art{width:23px;height:28px}.full-story-hud-shape{width:17px;height:17px}.full-story-hud-copy strong{font-size:9px}.full-story-hud-index,.full-story-hud-line{font-size:8px}.full-story-hud-line{display:none}.full-story-hud-percent{display:none}.full-story-hud-track{margin-top:7px}.full-story-enabled main>.react-section .heading{transform:none!important}}
 @media(max-width:390px){.full-story-hud{width:112px}.full-story-hud-art{display:none}}
 @media(prefers-reduced-motion:reduce){.full-story-hud{display:none!important}.full-story-enabled main>.react-section .heading,.full-story-enabled #contact h2{transform:none!important;opacity:1!important}}
+
+/* Keep mobile story indicator clear of both floating actions */
+@media(max-width:760px){.full-story-hud{width:max(105px,calc(100vw - 255px));max-width:150px}}
