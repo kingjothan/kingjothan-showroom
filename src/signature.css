@@ -18,3 +18,34 @@
 @media(max-width:1350px){.studio-rail{display:none}}
 @media(max-width:760px){.studio-top{width:42px;height:42px;right:16px;bottom:16px}.studio-grain{opacity:.045}}
 @media(prefers-reduced-motion:reduce){.studio-top,.studio-rail a,.studio-rail-label,.studio-rail-line{transition:none!important}}
+
+
+/* Mobile viewport overflow repair: never let marquee or cards widen the page */
+html{width:100%;max-width:100%;overflow-x:hidden;overscroll-behavior-x:none}
+body,#root{width:100%;max-width:100%;min-width:0;overflow-x:clip}
+main{width:100%;max-width:100%;min-width:0;overflow-x:clip}
+.react-section{max-width:100%}
+.ticker{display:block;width:100%;max-width:100%;min-width:0;overflow:hidden;contain:paint}
+.ticker .ticker-track{width:max-content;max-width:none;display:flex;align-items:center}
+.ticker .ticker-track span{flex:none;display:block}
+.hero,.section,.about,.contact-reimagined,.footer{max-width:100%;min-width:0}
+.hero h1,.heading h2,.about h2,.contact-reimagined h2{max-width:100%}
+.project,.visual,.archive-card,.skill,.contact-top,.contact-bottom{min-width:0;max-width:100%}
+@media(max-width:760px){
+ html{scroll-padding-top:76px}
+ body{padding-left:0!important;margin:0!important}
+ #root{overflow-x:clip}
+ .header{left:0;right:0;width:100%;max-width:100%;box-sizing:border-box}
+ .shell{width:calc(100% - 36px)!important;max-width:calc(100% - 36px)!important;margin-left:auto!important;margin-right:auto!important}
+ .hero,.section,.about,.contact-reimagined{overflow-x:clip}
+ .ticker{margin:0!important;padding:18px 0;font-size:12px;letter-spacing:.08em}
+ .ticker .ticker-track{animation-duration:45s}
+ .heading{width:100%;min-width:0}
+ .heading h2{font-size:clamp(38px,10vw,62px);overflow-wrap:normal;word-break:normal}
+ .heading p{width:100%;max-width:100%;overflow-wrap:break-word}
+ .project .visual{overflow:hidden}
+ .project .visual strong{overflow-wrap:break-word}
+ .contact-reimagined .shell{width:calc(100% - 36px)!important}
+ .footer{width:calc(100% - 36px)!important}
+}
+@media(max-width:360px){.shell,.contact-reimagined .shell,.footer{width:calc(100% - 28px)!important;max-width:calc(100% - 28px)!important}}
