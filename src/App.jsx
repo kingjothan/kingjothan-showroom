@@ -28,5 +28,58 @@ function useProjectStorytelling(){React.useEffect(()=>{const reduced=window.matc
 function useImmersiveDetails(){React.useEffect(()=>{const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduced)return;const cleanup=[];const desktop=window.matchMedia('(hover:hover) and (pointer:fine)');const cards=[...document.querySelectorAll('.project,.archive-card')];cards.forEach((card,index)=>{card.style.setProperty('--studio-index',String(index%4));const onEnter=()=>card.classList.add('studio-hovering');const onLeave=()=>{card.classList.remove('studio-hovering');card.style.removeProperty('--pointer-x');card.style.removeProperty('--pointer-y')};const onMove=e=>{if(!desktop.matches)return;const r=card.getBoundingClientRect();card.style.setProperty('--pointer-x',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');card.style.setProperty('--pointer-y',((e.clientY-r.top)/r.height*100).toFixed(1)+'%')};card.addEventListener('pointerenter',onEnter);card.addEventListener('pointerleave',onLeave);card.addEventListener('pointermove',onMove,{passive:true});cleanup.push(()=>{card.removeEventListener('pointerenter',onEnter);card.removeEventListener('pointerleave',onLeave);card.removeEventListener('pointermove',onMove);card.classList.remove('studio-hovering')})});const headings=[...document.querySelectorAll('.heading .kicker,.about .kicker,.contact-top .kicker')];if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('studio-kicker-in');observer.unobserve(e.target)}})},{threshold:.2});headings.forEach(h=>observer.observe(h));cleanup.push(()=>observer.disconnect())}return()=>cleanup.forEach(fn=>fn())},[])}
 function ThemeStudio(){const palettes=[{id:'signature',name:'Signature',accent:'#d2f0a0',gold:'#e7c88f',bg:'#101711',ink:'#f8f5eb'},{id:'ocean',name:'Ocean',accent:'#6fe6e2',gold:'#9ebcff',bg:'#0a1721',ink:'#effaff'},{id:'violet',name:'Violet',accent:'#d6a8ff',gold:'#ffa9da',bg:'#191121',ink:'#fff3ff'},{id:'ember',name:'Ember',accent:'#ffb37c',gold:'#ffe0a0',bg:'#20130f',ink:'#fff7ef'},{id:'mono',name:'Monochrome',accent:'#f5f5f5',gold:'#b9b9b9',bg:'#121212',ink:'#fafafa'},{id:'ruby',name:'Ruby',accent:'#ff6989',gold:'#ffb2bf',bg:'#240f19',ink:'#fff0f4'},{id:'cobalt',name:'Cobalt',accent:'#739fff',gold:'#c1d5ff',bg:'#0b1430',ink:'#f1f5ff'},{id:'sunset',name:'Sunset',accent:'#ff8c69',gold:'#ffcf78',bg:'#24131a',ink:'#fff4e8'},{id:'forest',name:'Forest',accent:'#70df9b',gold:'#b8e57a',bg:'#0a2118',ink:'#f1fff4'},{id:'lavender',name:'Lavender',accent:'#c7b1ff',gold:'#a7d6ff',bg:'#171429',ink:'#f7f3ff'},{id:'rose',name:'Rose Gold',accent:'#f6a6b5',gold:'#eac2a1',bg:'#24161d',ink:'#fff4f3'},{id:'electric',name:'Electric',accent:'#c8ff46',gold:'#63edff',bg:'#121c15',ink:'#f7ffe8'},{id:'arctic',name:'Arctic',accent:'#a9e8ff',gold:'#f0f8ff',bg:'#10212a',ink:'#f4fbff'},{id:'midnight',name:'Midnight',accent:'#8f9bff',gold:'#c4b6ff',bg:'#090e20',ink:'#f4f4ff'},{id:'copper',name:'Copper',accent:'#df9b62',gold:'#f3d5a5',bg:'#21170f',ink:'#fff5e9'},{id:'cherry',name:'Cherry',accent:'#ff6670',gold:'#ffc2a6',bg:'#250e15',ink:'#fff3f0'},{id:'mint',name:'Mint',accent:'#8df4d5',gold:'#b6ffe6',bg:'#0b1e1b',ink:'#edfff9'},{id:'gold',name:'Gold',accent:'#f3cc68',gold:'#fff0b5',bg:'#201a0d',ink:'#fff9e8'},{id:'peach',name:'Peach',accent:'#ffc2a6',gold:'#ffe2a1',bg:'#291b1a',ink:'#fff5f0'},{id:'cyber',name:'Cyberpunk',accent:'#ff73e1',gold:'#70f9f1',bg:'#1b0b25',ink:'#fff1ff'}];const [choice,setChoice]=React.useState(()=>{try{return localStorage.getItem('kj-theme')||'signature'}catch{return 'signature'}});const [open,setOpen]=React.useState(false);React.useEffect(()=>{const p=palettes.find(x=>x.id===choice)||palettes[0];const root=document.documentElement;root.style.setProperty('--theme-accent',p.accent);root.style.setProperty('--theme-secondary',p.gold);root.style.setProperty('--theme-bg',p.bg);root.style.setProperty('--theme-ink',p.ink);root.dataset.theme=p.id;try{localStorage.setItem('kj-theme',p.id)}catch{}},[choice]);return <aside className={'theme-studio'+(open?' theme-studio-open':'')} aria-label="Appearance settings"><button className="theme-trigger" type="button" aria-expanded={open} aria-controls="theme-panel" onClick={()=>setOpen(v=>!v)}><span className="theme-trigger-icon" aria-hidden="true">✦</span><span>Colours</span></button>{open&&<div className="theme-panel" id="theme-panel"><div className="theme-panel-top"><div><span className="theme-eyebrow">PERSONALISE THE EXPERIENCE</span><h3>Choose your mood.</h3></div><button className="theme-close" type="button" onClick={()=>setOpen(false)} aria-label="Close colour settings">×</button></div><p>Change the look of the entire showroom.</p><div className="theme-options">{palettes.map(p=><button key={p.id} type="button" className={'theme-option'+(choice===p.id?' selected':'')} onClick={()=>setChoice(p.id)} aria-pressed={choice===p.id}><span className="theme-swatch" style={{background:p.bg}}><i style={{background:p.accent}}/><i style={{background:p.gold}}/></span><span>{p.name}</span>{choice===p.id&&<span className="theme-selected" aria-hidden="true">✓</span>}</button>)}</div><span className="theme-saved">Your selection is saved on this device.</span></div>}</aside>}
 function SectionRail(){const [active,setActive]=React.useState('home');React.useEffect(()=>{const ids=['home','work','archive','all-projects','about','tech-stack','experience','resume','services','contact'];const nodes=ids.map(id=>document.getElementById(id)).filter(Boolean);if(!('IntersectionObserver' in window))return;const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting)setActive(entry.target.id)}},{rootMargin:'-20% 0px -65% 0px'});nodes.forEach(node=>observer.observe(node));return()=>observer.disconnect()},[]);const items=[['home','Intro'],['work','Work'],['about','About'],['experience','Journey'],['contact','Contact']];return <nav className="studio-rail" aria-label="Page sections">{items.map(([id,label],i)=><a key={id} href={'#'+id} className={active===id?'is-active':''} aria-label={'Go to '+label} aria-current={active===id?'location':undefined}><span className="studio-rail-number">{String(i+1).padStart(2,'0')}</span><span className="studio-rail-label">{label}</span><span className="studio-rail-line" aria-hidden="true"/></a>)}</nav>}
+
+function useSpatialStorytelling(){React.useEffect(()=>{
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+ if(reduced.matches)return;
+ const sections=[...document.querySelectorAll('main .react-section')];
+ const cards=[...document.querySelectorAll('.project,.archive-card,.kj-tech-card,.kj-resume-card')];
+ const hero=document.querySelector('.hero');
+ const portrait=document.querySelector('.hero .portrait');
+ const update=()=>{
+   const vh=window.innerHeight||1;
+   const scroll=window.scrollY||0;
+   document.documentElement.style.setProperty('--story-scroll',String(scroll));
+   sections.forEach((section,i)=>{
+     const rect=section.getBoundingClientRect();
+     const progress=Math.max(0,Math.min(1,(vh-rect.top)/(vh+rect.height)));
+     section.style.setProperty('--story-progress',progress.toFixed(4));
+     section.style.setProperty('--story-depth',((progress-.5)*2).toFixed(4));
+   });
+   if(hero){
+     const rect=hero.getBoundingClientRect();
+     const progress=Math.max(0,Math.min(1,-rect.top/Math.max(rect.height,1)));
+     hero.style.setProperty('--hero-scroll',progress.toFixed(4));
+     if(portrait)portrait.style.setProperty('--portrait-shift',Math.round(progress*36)+'px');
+   }
+   cards.forEach(card=>{
+     const rect=card.getBoundingClientRect();
+     if(rect.bottom<0||rect.top>vh)return;
+     const center=(rect.top+rect.height/2-vh/2)/(vh/2+rect.height/2);
+     card.style.setProperty('--card-scroll-tilt',(Math.max(-1,Math.min(1,center))*-3.5).toFixed(2)+'deg');
+     card.style.setProperty('--card-scroll-lift',(Math.max(0,1-Math.abs(center))*-10).toFixed(1)+'px');
+   });
+ };
+ let pending=false;
+ const request=()=>{if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;update()})};
+ const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('story-in-view')})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+ [...sections,...cards].forEach(el=>observer.observe(el));
+ const move=e=>{
+   if(e.pointerType==='touch')return;
+   const card=e.target.closest('.project,.archive-card,.kj-tech-card,.kj-resume-card');
+   if(!card)return;
+   const rect=card.getBoundingClientRect();
+   card.style.setProperty('--tilt-x',(((e.clientY-rect.top)/rect.height-.5)*-7).toFixed(2)+'deg');
+   card.style.setProperty('--tilt-y',(((e.clientX-rect.left)/rect.width-.5)*7).toFixed(2)+'deg');
+ };
+ const reset=e=>{const card=e.target.closest('.project,.archive-card,.kj-tech-card,.kj-resume-card');if(card){card.style.setProperty('--tilt-x','0deg');card.style.setProperty('--tilt-y','0deg')}};
+ document.addEventListener('pointermove',move,{passive:true});
+ document.addEventListener('pointerout',reset,{passive:true});
+ window.addEventListener('scroll',request,{passive:true});
+ window.addEventListener('resize',request,{passive:true});
+ update();
+ document.documentElement.classList.add('story-motion-ready');
+ return()=>{observer.disconnect();document.removeEventListener('pointermove',move);document.removeEventListener('pointerout',reset);window.removeEventListener('scroll',request);window.removeEventListener('resize',request);document.documentElement.classList.remove('story-motion-ready')};
+},[])}
 function BackToTop(){const [visible,setVisible]=React.useState(false);React.useEffect(()=>{const onScroll=()=>setVisible(window.scrollY>850);window.addEventListener('scroll',onScroll,{passive:true});onScroll();return()=>window.removeEventListener('scroll',onScroll)},[]);return <a className={'studio-top'+(visible?' is-visible':'')} href="#home" aria-label="Back to top">↑</a>}
-export default function App(){useShowroomEffects();useCinematicMotion();useProjectStorytelling();useImmersiveDetails();return <><div className="kj-spotlight" aria-hidden="true"/><div className="studio-grain" aria-hidden="true"/><SectionRail/><BackToTop/><ThemeStudio/><a className="skip" href="#work">Skip to projects</a><div className="reading-progress" id="reading-progress" aria-hidden="true"/><div dangerouslySetInnerHTML={{__html:headerHTML}}/><main>{sections.map((Component,i)=><Component key={i}/>)}</main><div dangerouslySetInnerHTML={{__html:footerHTML}}/></>}
+export default function App(){useShowroomEffects();useCinematicMotion();useProjectStorytelling();useImmersiveDetails();useSpatialStorytelling();return <><div className="kj-spotlight" aria-hidden="true"/><div className="studio-grain" aria-hidden="true"/><SectionRail/><BackToTop/><ThemeStudio/><a className="skip" href="#work">Skip to projects</a><div className="reading-progress" id="reading-progress" aria-hidden="true"/><div dangerouslySetInnerHTML={{__html:headerHTML}}/><main>{sections.map((Component,i)=><Component key={i}/>)}</main><div dangerouslySetInnerHTML={{__html:footerHTML}}/></>}
