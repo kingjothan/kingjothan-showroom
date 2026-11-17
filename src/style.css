@@ -110,3 +110,20 @@ body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 .hero .foot{animation:kj-rise 1s .65s both}
 a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;filter:none;transition:none}.section .heading.visible:after,.hero .eyebrow,.hero-identity,.hero h1,.hero-bottom,.hero .foot{animation:none!important}}
+
+
+/* Contrast correction: dark premium contact section */
+.contact-reimagined{color:#f8f5eb;background:radial-gradient(ellipse 50% 70% at 80% 25%,rgba(219,185,117,.1),transparent 78%),#111712}
+.contact-reimagined h2,.contact-reimagined h2 strong,.contact-reimagined .contact-copy p,.contact-reimagined .contact-brand,.contact-reimagined .contact-mini,.contact-reimagined .contact-email,.contact-reimagined .contact-location,.contact-reimagined .contact-social-grid a{color:#f8f5eb}
+.contact-reimagined h2 em{color:#d4ed9a}
+.contact-reimagined .kicker{color:#d9bf82}
+.contact-reimagined .availability-dot{background:#c7fa69;box-shadow:0 0 0 6px rgba(199,250,105,.12)}
+.contact-reimagined .contact-bottom{border-top-color:rgba(230,198,121,.25)}
+.contact-reimagined .contact-email{border-bottom-color:rgba(230,198,121,.3)}
+.contact-reimagined .contact-social-grid a{background:rgba(255,255,255,.06);border-color:rgba(230,198,121,.2)}
+.contact-reimagined .contact-social-grid a:hover{background:rgba(230,198,121,.15)}
+.contact-reimagined .contact-primary{background:#c7fa69;color:#101910}
+.contact-reimagined .contact-primary .contact-icon{background:#111910;color:#c7fa69}
+.contact-reimagined .contact-primary small{opacity:.82}
+.contact-reimagined .contact-watermark{color:rgba(230,198,121,.075)}
+@media(max-width:760px){.contact-reimagined h2{font-size:clamp(48px,10vw,76px);overflow-wrap:normal}.contact-reimagined .contact-copy p{color:#e7e9df}.contact-reimagined .contact-primary{padding:15px 17px}.contact-reimagined .contact-primary>span:nth-child(2){font-size:clamp(15px,4vw,19px)}}
