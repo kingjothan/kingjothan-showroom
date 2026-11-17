@@ -1,0 +1,42 @@
+/* Kingjothan interactive colour studio and cinematic polish */
+:root{--theme-accent:#d2f0a0;--theme-secondary:#e7c88f;--theme-bg:#101711;--theme-ink:#f8f5eb}
+html{scroll-behavior:smooth}
+body{background:var(--theme-bg);color:var(--theme-ink);transition:background-color .65s ease,color .65s ease}
+::selection{background:var(--theme-accent);color:var(--theme-bg)}
+:root{--studio-olive:var(--theme-accent);--studio-gold:var(--theme-secondary);--studio-cream:var(--theme-ink);--studio-border:color-mix(in srgb,var(--theme-secondary) 22%,transparent)}
+.hero,.section,.about,.contact-reimagined,.footer,.header{transition:background-color .65s,color .65s,border-color .65s}
+.hero h1 em,.section .heading h2 em,.about h2 em,.heading h2 em,.studio-rail a.is-active,.studio-rail a:hover,.studio-top,.contact-reimagined h2 em{color:var(--theme-accent)!important}
+.hero .eyebrow:before,.contact-reimagined .availability-dot{background:var(--theme-accent)!important;box-shadow:0 0 0 5px color-mix(in srgb,var(--theme-accent) 15%,transparent)}
+.hero .eyebrow,.studio-top{border-color:color-mix(in srgb,var(--theme-secondary) 40%,transparent)}
+.hero .eyebrow{background:color-mix(in srgb,var(--theme-secondary) 6%,transparent)}
+.project.studio-hovering{border-color:color-mix(in srgb,var(--theme-secondary) 50%,transparent)}
+.project:after{background:radial-gradient(360px circle at var(--pointer-x,50%) var(--pointer-y,50%),color-mix(in srgb,var(--theme-secondary) 17%,transparent),transparent 75%)}
+.section .heading h2 em:after,.about h2 em:after,.skill:after{background:linear-gradient(90deg,var(--theme-secondary),var(--theme-accent))}
+.studio-rail-line{background:currentColor}
+.contact-reimagined{background-image:radial-gradient(ellipse at 82% 22%,color-mix(in srgb,var(--theme-accent) 10%,transparent),transparent 55%),radial-gradient(ellipse at 12% 80%,color-mix(in srgb,var(--theme-secondary) 8%,transparent),transparent 65%)!important;background-color:var(--theme-bg)!important}
+.contact-reimagined h2,.contact-reimagined h2 strong,.contact-reimagined .contact-copy p{color:var(--theme-ink)!important}
+.hero{background-image:radial-gradient(ellipse 48% 42% at 85% 23%,color-mix(in srgb,var(--theme-secondary) 11%,transparent),transparent 70%),radial-gradient(ellipse 48% 35% at 12% 83%,color-mix(in srgb,var(--theme-accent) 7%,transparent),transparent 75%)!important}
+.theme-studio{position:fixed;z-index:110;left:clamp(14px,2vw,28px);bottom:clamp(16px,2vw,28px);font-family:"DM Sans",sans-serif;color:#f9f7f0}
+.theme-trigger{display:flex;align-items:center;gap:10px;min-height:46px;padding:10px 17px;background:rgba(17,23,20,.95);border:1px solid color-mix(in srgb,var(--theme-accent) 42%,transparent);border-radius:100px;color:#f8f5eb;box-shadow:0 12px 36px rgba(0,0,0,.25);font:700 12px "DM Sans",sans-serif;letter-spacing:.04em;cursor:pointer;backdrop-filter:blur(18px);transition:transform .3s,box-shadow .3s}
+.theme-trigger:hover{transform:translateY(-3px);box-shadow:0 18px 48px color-mix(in srgb,var(--theme-accent) 16%,transparent)}
+.theme-trigger-icon{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--theme-accent);color:#111;font-size:17px;transition:transform .7s}
+.theme-trigger:hover .theme-trigger-icon{transform:rotate(90deg)}
+.theme-panel{position:absolute;bottom:60px;left:0;width:min(345px,calc(100vw - 30px));padding:23px;background:rgba(16,21,20,.97);border:1px solid rgba(255,255,255,.17);border-radius:22px;box-shadow:0 28px 80px rgba(0,0,0,.45);backdrop-filter:blur(24px);animation:theme-panel-enter .45s cubic-bezier(.16,1,.3,1) both}
+@keyframes theme-panel-enter{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.theme-panel-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.theme-eyebrow{font-size:9px;font-weight:700;letter-spacing:.16em;color:var(--theme-accent)}
+.theme-panel h3{margin:9px 0 0;font:600 27px/1.1 "Space Grotesk",sans-serif;letter-spacing:-.05em;color:#fff}
+.theme-panel p{font-size:12px;color:#adb5ad;line-height:1.6;margin:12px 0 19px}
+.theme-close{width:30px;height:30px;display:grid;place-items:center;border:1px solid #49514b;background:transparent;border-radius:50%;color:#fff;font-size:22px;cursor:pointer}
+.theme-options{display:grid;gap:8px}
+.theme-option{display:flex;align-items:center;gap:13px;padding:8px 10px;border:1px solid transparent;border-radius:12px;background:rgba(255,255,255,.045);color:#f8f8f4;font:600 12px "DM Sans",sans-serif;cursor:pointer;text-align:left;transition:background .25s,border-color .25s,transform .25s}
+.theme-option:hover{background:rgba(255,255,255,.1);transform:translateX(3px)}
+.theme-option.selected{border-color:var(--theme-accent);background:color-mix(in srgb,var(--theme-accent) 10%,transparent)}
+.theme-swatch{display:flex;align-items:flex-end;gap:5px;width:52px;height:33px;border-radius:7px;padding:7px;border:1px solid rgba(255,255,255,.15)}
+.theme-swatch i{display:block;width:15px;height:19px;border-radius:4px}
+.theme-swatch i+ i{height:13px}
+.theme-selected{margin-left:auto;color:var(--theme-accent);font-size:18px}
+.theme-saved{display:block;margin-top:16px;color:#99a49a;font-size:10px}
+.theme-trigger:focus-visible,.theme-option:focus-visible,.theme-close:focus-visible{outline:2px solid var(--theme-accent);outline-offset:3px}
+@media(max-width:760px){.theme-studio{left:12px;bottom:14px}.theme-trigger{min-height:43px;padding:8px 13px}.theme-panel{bottom:55px;padding:19px}.theme-studio-open{z-index:120}.studio-top{bottom:18px;right:14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.theme-panel{animation:none}.theme-trigger,.theme-trigger-icon,.theme-option,body{transition:none!important}}
