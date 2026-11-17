@@ -49,3 +49,45 @@ main{width:100%;max-width:100%;min-width:0;overflow-x:clip}
  .footer{width:calc(100% - 36px)!important}
 }
 @media(max-width:360px){.shell,.contact-reimagined .shell,.footer{width:calc(100% - 28px)!important;max-width:calc(100% - 28px)!important}}
+
+
+/* Editorial motion pass: narrative rhythm, kinetic type and restrained parallax */
+@keyframes studio-underline{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes studio-floating{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-9px,0)}}
+@keyframes studio-enter{from{opacity:0;transform:translate3d(0,32px,0);filter:blur(8px)}to{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}}
+@keyframes studio-pulse{0%,100%{opacity:.45}50%{opacity:.85}}
+.hero .eyebrow{animation:studio-enter 800ms .08s cubic-bezier(.2,.8,.2,1) both}
+.hero-identity{animation:studio-enter 900ms .16s cubic-bezier(.2,.8,.2,1) both}
+.hero h1{animation:studio-enter 1100ms .28s cubic-bezier(.2,.8,.2,1) both}
+.hero-bottom{animation:studio-enter 1000ms .5s cubic-bezier(.2,.8,.2,1) both}
+.hero .foot{animation:studio-enter 900ms .7s cubic-bezier(.2,.8,.2,1) both}
+.hero-identity .portrait{animation:studio-floating 7s ease-in-out infinite}
+.hero .eyebrow:before{content:"";display:inline-block;width:7px;height:7px;background:#d2f0a0;border-radius:50%;box-shadow:0 0 0 5px rgba(210,240,160,.12);animation:studio-pulse 2.8s ease-in-out infinite}
+.section .heading h2 em,.about h2 em{position:relative}
+.section .heading h2 em:after,.about h2 em:after{content:"";position:absolute;left:0;right:0;bottom:-.09em;height:2px;background:linear-gradient(90deg,rgba(210,240,160,.05),#d2f0a0,rgba(231,200,143,.2));transform:scaleX(0);transform-origin:left;opacity:.8}
+.section .heading.visible h2 em:after,.about-grid.visible h2 em:after{animation:studio-underline 1.2s .5s cubic-bezier(.2,.8,.2,1) forwards}
+.project .visual{isolation:isolate}
+.project .visual:before{transform:translate3d(0,var(--story-shift,0px),0) scale(1.02);will-change:transform}
+.project:hover .visual:before{transform:translate3d(0,var(--story-shift,0px),0) scale(1.09)}
+.project .visual strong{filter:drop-shadow(0 8px 22px rgba(0,0,0,.12))}
+.project .visual:after{box-shadow:0 8px 25px rgba(0,0,0,.08)}
+.archive-card{background-position:center;isolation:isolate}
+.archive-card:before{transform:translateY(var(--story-shift,0px));transition:transform 150ms linear}
+.project .project-meta h3{transition:color .35s}
+.project:hover .project-meta h3{color:#e7c88f}
+.skill:after{content:"";position:absolute;left:24px;right:24px;bottom:0;height:2px;background:linear-gradient(90deg,#e7c88f,#d2f0a0);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.skill:hover:after{transform:scaleX(1)}
+.contact-reimagined .contact-primary .contact-arrow{transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.contact-reimagined .contact-primary:hover .contact-arrow{transform:translate(5px,-5px)}
+@media(max-width:760px){
+ .hero .eyebrow:before{width:6px;height:6px}
+ .hero-identity .portrait{animation:none}
+ .project .visual:before{will-change:auto}
+ .section .heading h2 em:after,.about h2 em:after{height:1px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero .eyebrow,.hero-identity,.hero h1,.hero-bottom,.hero .foot,.hero-identity .portrait,.hero .eyebrow:before{animation:none!important}
+ .section .heading h2 em:after,.about h2 em:after{animation:none!important;transform:scaleX(1)}
+ .project .visual:before,.project:hover .visual:before,.archive-card:before{transform:none!important;will-change:auto}
+ .skill:after,.contact-reimagined .contact-primary .contact-arrow{transition:none!important}
+}
