@@ -91,3 +91,55 @@ main{width:100%;max-width:100%;min-width:0;overflow-x:clip}
  .project .visual:before,.project:hover .visual:before,.archive-card:before{transform:none!important;will-change:auto}
  .skill:after,.contact-reimagined .contact-primary .contact-arrow{transition:none!important}
 }
+
+
+/* IMMERSIVE MOTION EDITION: directional lighting, animated borders, kinetic labels */
+@keyframes studio-border-travel{0%{background-position:0% 0%}50%{background-position:100% 100%}100%{background-position:0% 0%}}
+@keyframes studio-label-reveal{from{opacity:0;transform:translate3d(0,16px,0);letter-spacing:.32em}to{opacity:1;transform:translate3d(0,0,0);letter-spacing:.16em}}
+@keyframes studio-card-breathe{0%,100%{box-shadow:0 15px 50px rgba(0,0,0,.14)}50%{box-shadow:0 22px 60px rgba(231,200,143,.075)}}
+@keyframes studio-arrow-drift{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(4px,-4px,0)}}
+@keyframes studio-ambient-drift{0%,100%{background-position:0% 0%}50%{background-position:100% 100%}}
+@keyframes studio-ticker-glint{from{transform:translateX(-150%) skewX(-25deg)}to{transform:translateX(350%) skewX(-25deg)}}
+@keyframes studio-glow-beat{0%,100%{opacity:.28}50%{opacity:.65}}
+.hero{background-image:radial-gradient(ellipse 48% 42% at 85% 23%,rgba(231,200,143,.095),transparent 70%),radial-gradient(ellipse 48% 35% at 12% 83%,rgba(210,240,160,.04),transparent 75%);background-size:115% 115%;animation:studio-ambient-drift 22s ease-in-out infinite}
+.hero h1 em{text-shadow:0 8px 50px rgba(210,240,160,.1)}
+.hero .foot{position:relative}
+.hero .foot:after{content:"";position:absolute;left:0;top:-1px;width:18%;height:1px;background:linear-gradient(90deg,transparent,#e7c88f,transparent);animation:studio-border-travel 9s linear infinite alternate;background-size:300% 100%}
+.ticker{isolation:isolate}
+.ticker:after{content:"";position:absolute;inset:0;width:25%;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.27),transparent);transform:translateX(-150%) skewX(-25deg);animation:studio-ticker-glint 11s ease-in-out infinite}
+.heading .kicker,.about .kicker,.contact-top .kicker{display:inline-block}
+.studio-kicker-in{animation:studio-label-reveal .85s cubic-bezier(.2,.8,.2,1) both}
+.project{overflow:hidden;isolation:isolate;transition:border-color .4s,box-shadow .5s,transform .5s}
+.project:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;border-radius:inherit;background:radial-gradient(360px circle at var(--pointer-x,50%) var(--pointer-y,50%),rgba(231,200,143,.12),transparent 75%);opacity:0;transition:opacity .35s}
+.project.studio-hovering:after{opacity:1}
+.project.studio-hovering{border-color:rgba(231,200,143,.5);box-shadow:0 28px 75px rgba(0,0,0,.28)}
+.project .visual:after{animation:studio-arrow-drift 5s ease-in-out infinite}
+.project .visual strong{transition:letter-spacing .5s,transform .45s}
+.project:hover .visual strong{letter-spacing:-.055em}
+.archive-card{isolation:isolate}
+.archive-card:before{z-index:0}
+.archive-card>*{z-index:1}
+.archive-card:focus-visible,.project:focus-within{outline:2px solid #e7c88f;outline-offset:4px}
+.archive-card.studio-hovering{box-shadow:0 25px 65px rgba(0,0,0,.3)}
+.archive-card:after{animation:studio-arrow-drift 6s ease-in-out infinite}
+.skill{isolation:isolate}
+.skill:hover{box-shadow:0 18px 45px rgba(0,0,0,.22)}
+.skill span{transition:letter-spacing .45s}
+.skill:hover span{letter-spacing:.14em}
+.timeline-row{transition:background .4s,padding .4s}
+.timeline-row:hover{background:linear-gradient(90deg,rgba(231,200,143,.06),transparent 65%);padding-left:14px}
+.contact-reimagined{background-size:115% 115%;animation:studio-ambient-drift 24s ease-in-out infinite}
+.contact-reimagined .availability-dot{animation:studio-glow-beat 2.8s ease-in-out infinite}
+.contact-reimagined .contact-primary{position:relative;overflow:hidden}
+.contact-reimagined .contact-primary:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.32) 50%,transparent 80%);transform:translateX(-150%);transition:transform .8s}
+.contact-reimagined .contact-primary:hover:after{transform:translateX(150%)}
+@media(max-width:760px){
+ .hero{animation-duration:32s}
+ .project:after{display:none}
+ .project .visual:after,.archive-card:after{animation:none}
+ .timeline-row:hover{padding-left:10px}
+ .ticker:after{animation-duration:16s;opacity:.4}
+ .contact-reimagined{animation:none}
+}
+@media(hover:none){.project:after{display:none}.timeline-row:hover{padding-left:10px}.contact-reimagined .contact-primary:after{display:none}}
+@media(prefers-reduced-motion:reduce){.hero,.hero .foot:after,.ticker:after,.studio-kicker-in,.project .visual:after,.archive-card:after,.contact-reimagined,.contact-reimagined .availability-dot{animation:none!important}.project,.timeline-row,.skill{transition:none!important}.project:after{display:none}}
