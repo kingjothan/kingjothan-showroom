@@ -311,3 +311,25 @@ a,button{touch-action:manipulation}
  .contact-primary .contact-icon{width:42px;height:42px}
 }
 @media(hover:none){.project:hover,.archive-card:hover,.skill:hover,.visual:hover{transform:none!important}}
+
+
+/* Cinematic motion language, lightweight and touch friendly */
+@keyframes kj-gradient-flow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes kj-ambient-breathe{0%,100%{opacity:.35;transform:translate3d(0,0,0) scale(.94)}50%{opacity:.7;transform:translate3d(-12px,18px,0) scale(1.08)}}
+@keyframes kj-outline-pulse{0%,100%{box-shadow:0 0 0 1px rgba(223,189,129,.17),0 20px 50px rgba(0,0,0,.15)}50%{box-shadow:0 0 0 1px rgba(223,189,129,.36),0 25px 75px rgba(223,189,129,.09)}}
+@keyframes kj-text-sheen{0%{background-position:150% 50%}100%{background-position:-70% 50%}}
+.hero:before{animation:kj-ambient-breathe 12s ease-in-out infinite;transform-origin:70% 40%}
+.hero h1{transform:translate3d(0,calc(var(--scroll-shift,0px)*.12),0)}
+.hero h1 em{background-size:250% 100%;animation:kj-text-sheen 12s ease-in-out infinite alternate}
+.hero .portrait{animation:kj-outline-pulse 6s ease-in-out infinite}
+.project .visual{background-size:125% 125%;transition:background-position 900ms cubic-bezier(.2,.8,.2,1),transform 600ms cubic-bezier(.2,.8,.2,1)}
+.project:hover .visual{background-position:65% 35%}
+.project .visual strong{transition:transform 450ms cubic-bezier(.2,.8,.2,1);will-change:transform}
+.archive-card{transition:transform 550ms cubic-bezier(.2,.8,.2,1),box-shadow 550ms ease,filter 550ms ease}
+.archive-card:hover{filter:saturate(1.12)}
+.skill{transition:transform 500ms cubic-bezier(.2,.8,.2,1),border-color 350ms,box-shadow 500ms}
+.contact-reimagined h2 em{background:linear-gradient(110deg,#c7fa69 0%,#f3e0b3 45%,#c7fa69 80%);background-size:220% 100%;background-clip:text;-webkit-background-clip:text;color:transparent;animation:kj-gradient-flow 9s ease infinite}
+.contact-primary,.hero .pill,.hero .ghost{transition:translate 250ms cubic-bezier(.2,.8,.2,1),transform 350ms,box-shadow 350ms}
+@media(hover:hover) and (pointer:fine){.project .visual:hover{transform:scale(1.012)}}
+@media(max-width:760px){.project .visual strong{will-change:auto}.hero:before{animation-duration:18s}.hero h1{transform:none}}
+@media(prefers-reduced-motion:reduce){.hero:before,.hero h1 em,.hero .portrait,.contact-reimagined h2 em{animation:none!important}.hero h1{transform:none!important}.project .visual strong{will-change:auto}}
