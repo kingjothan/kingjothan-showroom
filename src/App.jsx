@@ -96,5 +96,74 @@ function StoryChapter(){const [active,setActive]=React.useState(0);const scene=R
  const update=()=>{raf=0;const rect=el.getBoundingClientRect();const travel=Math.max(1,rect.height-window.innerHeight);const p=Math.max(0,Math.min(1,-rect.top/travel));el.style.setProperty('--chapter-progress',p.toFixed(4));el.style.setProperty('--chapter-turn',(p*920).toFixed(1)+'deg');el.style.setProperty('--chapter-rise',((p-.5)*110).toFixed(1)+'px');el.style.setProperty('--chapter-glow',(0.25+p*.6).toFixed(3));setActive(Math.min(3,Math.floor(p*4)))};
  const onScroll=()=>{if(!raf)raf=requestAnimationFrame(update)};update();window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll,{passive:true});return()=>{window.removeEventListener('scroll',onScroll);window.removeEventListener('resize',onScroll);if(raf)cancelAnimationFrame(raf)}
  },[]);return <section className="story-chapter" ref={scene} aria-label="My approach to building software"><div className="story-chapter-sticky"><div className="story-chapter-top"><span>THE PROCESS / A SCROLL STORY</span><span>{String(active+1).padStart(2,'0')} / 04</span></div><div className="story-chapter-stage" aria-hidden="true"><div className="story-orbit story-orbit-a"/><div className="story-orbit story-orbit-b"/><div className="story-assembly"><div className="story-core"><div className="story-core-face story-core-front"/><div className="story-core-face story-core-back"/><div className="story-core-face story-core-left"/><div className="story-core-face story-core-right"/><div className="story-core-face story-core-top"/><div className="story-core-face story-core-bottom"/></div><div className="story-ring story-ring-one"/><div className="story-ring story-ring-two"/><div className="story-satellite story-satellite-one"/><div className="story-satellite story-satellite-two"/></div></div><div className="story-chapter-copy" aria-live="off">{storyChapters.map((chapter,i)=><article key={chapter.number} className={'story-chapter-beat'+(active===i?' is-active':'')} aria-hidden={active!==i}><span>{chapter.eyebrow}</span><h2>{chapter.title}</h2><p>{chapter.description}</p></article>)}</div><div className="story-chapter-progress" aria-hidden="true"><span/></div><div className="story-chapter-bottom"><span>SCROLL TO EXPLORE</span><span>DESIGN · CODE · SYSTEMS · PEOPLE</span></div></div></section>}
+
+const fullStoryActs=[
+ {id:'home',name:'INTRO',line:'The person behind the code',symbol:'01'},
+ {id:'work',name:'SELECTED WORK',line:'Ideas turned into products',symbol:'02'},
+ {id:'archive',name:'PROJECT ARCHIVE',line:'The work behind the work',symbol:'03'},
+ {id:'all-projects',name:'ALL PROJECTS',line:'Every build has a purpose',symbol:'04'},
+ {id:'about',name:'ABOUT',line:'Curiosity drives the process',symbol:'05'},
+ {id:'tech-stack',name:'TECH STACK',line:'Tools chosen for the problem',symbol:'06'},
+ {id:'experience',name:'EXPERIENCE',line:'Lessons from real delivery',symbol:'07'},
+ {id:'resume',name:'RESUME',line:'A wider picture of my work',symbol:'08'},
+ {id:'services',name:'SERVICES',line:'What I can build for you',symbol:'09'},
+ {id:'contact',name:'CONTACT',line:'The next story starts here',symbol:'10'}
+];
+function FullPageStory(){
+ const [act,setAct]=React.useState(0);
+ const [progress,setProgress]=React.useState(0);
+ const stage=React.useRef(null);
+ React.useEffect(()=>{
+   const root=document.documentElement;
+   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+   const targets=fullStoryActs.map(x=>document.getElementById(x.id));
+   if(reduce.matches)return;
+   let frame=0,last=-1;
+   const clamp=(v,min=0,max=1)=>Math.max(min,Math.min(max,v));
+   const update=()=>{
+     frame=0;
+     const vh=window.innerHeight||1;
+     const middle=vh*.42;
+     let current=0;
+     for(let i=0;i<targets.length;i++){
+       const el=targets[i];if(el&&el.getBoundingClientRect().top<=middle)current=i;
+     }
+     const el=targets[current];
+     if(!el)return;
+     const r=el.getBoundingClientRect();
+     const p=clamp((vh-r.top)/(vh+r.height));
+     const within=clamp(-r.top/Math.max(1,r.height-vh*.5));
+     const global=clamp((window.scrollY||0)/Math.max(1,document.documentElement.scrollHeight-vh));
+     root.style.setProperty('--full-story-progress',global.toFixed(5));
+     root.style.setProperty('--full-story-rotation',(global*1440).toFixed(2)+'deg');
+     root.dataset.storyAct=String(current);
+     if(stage.current){
+       stage.current.style.setProperty('--act-progress',p.toFixed(4));
+       stage.current.style.setProperty('--act-rotation',(within*260+current*42).toFixed(1)+'deg');
+     }
+     if(current!==last){last=current;setAct(current)}
+     setProgress(Math.round(global*100));
+     targets.forEach((target,i)=>{
+       if(!target)return;
+       const rect=target.getBoundingClientRect();
+       const enter=clamp((vh-rect.top)/(vh*.78));
+       const exit=clamp(rect.bottom/(vh*.85));
+       const depth=clamp((vh*.55-(rect.top+rect.height*.5))/(vh*.9),-1,1);
+       target.style.setProperty('--act-enter',enter.toFixed(4));
+       target.style.setProperty('--act-exit',exit.toFixed(4));
+       target.style.setProperty('--act-depth',depth.toFixed(4));
+       target.style.setProperty('--act-section-progress',clamp((vh-rect.top)/(vh+rect.height)).toFixed(4));
+       target.classList.toggle('full-story-current',i===current);
+     });
+   };
+   const onScroll=()=>{if(!frame)frame=requestAnimationFrame(update)};
+   window.addEventListener('scroll',onScroll,{passive:true});
+   window.addEventListener('resize',onScroll,{passive:true});
+   update();
+   root.classList.add('full-story-enabled');
+   return()=>{window.removeEventListener('scroll',onScroll);window.removeEventListener('resize',onScroll);if(frame)cancelAnimationFrame(frame);root.classList.remove('full-story-enabled');delete root.dataset.storyAct;targets.forEach(t=>{t?.classList.remove('full-story-current');t?.style.removeProperty('--act-enter');t?.style.removeProperty('--act-exit');t?.style.removeProperty('--act-depth');t?.style.removeProperty('--act-section-progress')})};
+ },[]);
+ return <aside className="full-story-hud" ref={stage} aria-label="Scroll story progress"><div className="full-story-hud-inner"><div className="full-story-hud-art" aria-hidden="true"><div className="full-story-hud-shape"><span/><span/><span/></div></div><div className="full-story-hud-copy"><span className="full-story-hud-index">{fullStoryActs[act].symbol} / 10</span><strong>{fullStoryActs[act].name}</strong><span className="full-story-hud-line">{fullStoryActs[act].line}</span></div><span className="full-story-hud-percent">{progress}%</span></div><div className="full-story-hud-track"><span style={{transform:'scaleX('+progress/100+')'}}/></div></aside>
+}
 function BackToTop(){const [visible,setVisible]=React.useState(false);React.useEffect(()=>{const onScroll=()=>setVisible(window.scrollY>850);window.addEventListener('scroll',onScroll,{passive:true});onScroll();return()=>window.removeEventListener('scroll',onScroll)},[]);return <a className={'studio-top'+(visible?' is-visible':'')} href="#home" aria-label="Back to top">↑</a>}
-export default function App(){useShowroomEffects();useCinematicMotion();useProjectStorytelling();useImmersiveDetails();useSpatialStorytelling();return <><div className="kj-spotlight" aria-hidden="true"/><div className="studio-grain" aria-hidden="true"/><SectionRail/><BackToTop/><ThemeStudio/><a className="skip" href="#work">Skip to projects</a><div className="reading-progress" id="reading-progress" aria-hidden="true"/><div dangerouslySetInnerHTML={{__html:headerHTML}}/><main>{sections.map((Component,i)=><React.Fragment key={i}><Component/>{i===0&&<StoryChapter/>}</React.Fragment>)}</main><div dangerouslySetInnerHTML={{__html:footerHTML}}/></>}
+export default function App(){useShowroomEffects();useCinematicMotion();useProjectStorytelling();useImmersiveDetails();useSpatialStorytelling();return <><div className="kj-spotlight" aria-hidden="true"/><div className="studio-grain" aria-hidden="true"/><SectionRail/><FullPageStory/><BackToTop/><ThemeStudio/><a className="skip" href="#work">Skip to projects</a><div className="reading-progress" id="reading-progress" aria-hidden="true"/><div dangerouslySetInnerHTML={{__html:headerHTML}}/><main>{sections.map((Component,i)=><React.Fragment key={i}><Component/>{i===0&&<StoryChapter/>}</React.Fragment>)}</main><div dangerouslySetInnerHTML={{__html:footerHTML}}/></>}
